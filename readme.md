@@ -1,8 +1,8 @@
 # Billing Notes
 
-## These are for me. And maybe for you.
+These are for me. And maybe for you.
 
-### What’s happening?
+## What’s happening?
 
 When a user submits their credit card info, it goes to Braintree.
 
@@ -10,7 +10,7 @@ Braintree processes it, and then directs the user back to the site. One way to g
 
 When the payment is approved from Braintree, it also creates a subscription for the user at the Monotask site. This subscription's rebill date is in one month from the current date.
 
-### The User Experience
+## The User Experience
 
 So the flow should be:
 
@@ -26,3 +26,5 @@ At Braintree, we can submit re-authorizations from the server (S2S submission). 
 Updating a Subscription
 
 The "your account" box has a "billing" module. If the user already has a subscription, it shows one field. If not, it shows a different one. The two fields have different forms. The "already has a subscription" form simply adds the user's billing information at Braintree, but isn't processing a sale / transaction. The "no subscription yet" form will submit the credit card information to Braintree, processes it as a sale, and then adds a subscription to the Subscriptions table for that user.
+
+## Error Cases
