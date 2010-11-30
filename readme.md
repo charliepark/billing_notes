@@ -32,8 +32,8 @@ The "your account" box has a "billing" module. If the user already has a subscri
 1. Purge sandbox data at Braintree.
 1. script/console; Subscription.destroy_all
 1. Reload main site page, bring up "subscribe" form; submit
-1. Check Subscription.all [should see subscription]
-1. Check Braintree [should see charge, user / payment method in vault]
+1. Check Subscription.all [should see subscription; paid_through should be 1.month from today]
+1. Check Braintree [should see charge, user / payment method in vault; amount should match desired amount]
 
 
 
