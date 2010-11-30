@@ -14,10 +14,10 @@ When the payment is approved from Braintree, it also creates a subscription for 
 
 So the flow should be:
 
-   1. User enters (valid) info and hits submit
-   2. Data is passed to Braintree. They process it, and approve the user.
-   3. On the page that gets loaded (in the background), a new Subscription is created, for the user.
-   4. The user gets a confirmation message on the screen that their account is fully set up, and they may now download the application for their computer.
+1. User enters (valid) info and hits submit
+1. Data is passed to Braintree. They process it, and approve the user.
+1. On the page that gets loaded (in the background), a new Subscription is created, for the user.
+1. The user gets a confirmation message on the screen that their account is fully set up, and they may now download the application for their computer.
 
 One possible way of making it work: Have a partial, something like /subscriptions/_new.html.erb that notes: "You have now signed up, and your download should start automatically." That page would then be what loads up when the remote submission (AJAX) gives an approval code. TOTALLY NOT SURE HOW TO MAKE THIS WORK.
 What About Rebilling?
@@ -26,6 +26,16 @@ At Braintree, we can submit re-authorizations from the server (S2S submission). 
 Updating a Subscription
 
 The "your account" box has a "billing" module. If the user already has a subscription, it shows one field. If not, it shows a different one. The two fields have different forms. The "already has a subscription" form simply adds the user's billing information at Braintree, but isn't processing a sale / transaction. The "no subscription yet" form will submit the credit card information to Braintree, processes it as a sale, and then adds a subscription to the Subscriptions table for that user.
+
+## Testing Process
+
+1. Purge sandbox data at Braintree.
+1. script/console; Subscription.destroy_all
+1. Reload main site page, bring up "subscribe" form; submit
+1. Check Subscription.all [should see subscription]
+1. Check Braintree [should see charge, user / payment method in vault]
+
+
 
 ## Error Cases
 
