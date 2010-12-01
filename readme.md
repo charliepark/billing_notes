@@ -27,6 +27,10 @@ Updating a Subscription
 
 The "your account" box has a "billing" module. If the user already has a subscription, it shows one field. If not, it shows a different one. The two fields have different forms. The "already has a subscription" form simply adds the user's billing information at Braintree, but isn't processing a sale / transaction. The "no subscription yet" form will submit the credit card information to Braintree, processes it as a sale, and then adds a subscription to the Subscriptions table for that user.
 
+## Yes, We Have No Subscriptions
+
+If a user doesn't have a subscription, they're given a form that submits a "new payment method"
+
 ## Testing Process
 
 1. Purge sandbox data at Braintree.
